@@ -8,14 +8,20 @@
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="mediaqueries.css" />
   </head>
-  <body>
+  <body class="lang-en">
     <nav id="desktop-nav">
       <div class="logo">Johann Sourou</div>
       <div>
         <ul class="nav-links">
+          <!---
           <li><a href="#about">About</a></li>
           <li><a href="#experience">Experience</a></li>
           <li><a href="#projects">Projects</a></li>
+          <li><a href="#contact">Contact</a></li>
+         --->
+          <li><a href="#about">À Propos</a></li>
+          <li><a href="#experience">Expérience</a></li>
+          <li><a href="#projects">Projets</a></li>
           <li><a href="#contact">Contact</a></li>
         </ul>
       </div>
@@ -29,33 +35,36 @@
           <span></span>
         </div>
         <div class="menu-links">
-          <li><a href="#about" onclick="toggleMenu()">About</a></li>
-          <li><a href="#experience" onclick="toggleMenu()">Experience</a></li>
-          <li><a href="#projects" onclick="toggleMenu()">Projects</a></li>
+          <li><a href="#about" onclick="toggleMenu()">À Propos</a></li>
+          <li><a href="#experience" onclick="toggleMenu()">Expérience</a></li>
+          <li><a href="#projects" onclick="toggleMenu()">Projets</a></li>
           <li><a href="#contact" onclick="toggleMenu()">Contact</a></li>
         </div>
       </div>
     </nav>
+
+    <!-- Profile Section -->
     <section id="profile">
       <div class="section__pic-container">
+        <!---CERCLE-->
         <img
-          src="./assets/profile-pic.png"
+          src="./assets/johannSourouProfilePic.png"
           alt="Johann Sourou profile picture"
         />
       </div>
       <div class="section__text">
-        <p class="section__text__p1">Hello, I'm</p>
+        <p class="section__text__p1">Salut, mon nom est</p>
         <h1 class="title">Johann Sourou</h1>
-        <p class="section__text__p2">Full Stack Developer</p>
+        <p class="section__text__p2">Développeur Full Stack Aspirant</p>
         <div class="btn-container">
           <button
             class="btn btn-color-2"
-            onclick="window.open('./assets/resume-example.pdf')"
+            onclick="window.open('./assets/JohannCvFR.pdf')"
           >
-            Download CV
+            Télécharger mon CV
           </button>
           <button class="btn btn-color-1" onclick="location.href='#contact'">
-            Contact Info
+            Coordonnées
           </button>
         </div>
         <div id="socials-container">
@@ -77,12 +86,12 @@
 
     <!-- About Section -->
     <section id="about">
-      <p class="section__text__p1">Get To Know More</p>
-      <h1 class="title">About Me</h1>
+      <p class="section__text__p1">En Savoir Plus</p>
+      <h1 class="title">À Propos de moi</h1>
       <div class="section-container">
         <div class="section__pic-container">
           <img
-            src="./assets/about-pic.png"
+            src="./assets/johannSourouProfilePic.png"
             alt="Profile picture"
             class="about-pic"
           />
@@ -104,18 +113,21 @@
                 alt="Education icon"
                 class="icon"
               />
-              <h3>Education</h3>
-              <p>B.Sc. in mathematics and computer science</p>
+              <h3>Éducation</h3>
+              <p>Baccalauréat en mathématique et informatique</p>
             </div>
           </div>
           <div class="text-container">
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic quis
-              reprehenderit et laborum, rem, dolore eum quod voluptate
-              exercitationem nobis, nihil esse debitis maxime facere minus sint
-              delectus velit in eos quo officiis explicabo deleniti dignissimos.
-              Eligendi illum libero dolorum cum laboriosam corrupti quidem,
-              reiciendis ea magnam? Nulla, impedit fuga!
+            <p style="text-align: justify">
+              Étudiant en Mathématiques et Informatique, passionné par le
+              développement logiciel, la programmation et l'analyse de données.
+              Je suis particulièrement intéressé par l'application de mes
+              compétences en informatique pour résoudre des problèmes concrets.
+              Actuellement, je cherche des opportunités pour approfondir mes
+              connaissances en développement logiciel et contribuer à des
+              projets innovants. Motivé et curieux, je suis prêt à apporter mon
+              expertise analytique à des équipes dynamiques et à des projets
+              passionnants.
             </p>
           </div>
         </div>
@@ -124,12 +136,12 @@
 
     <!-- Experience Section -->
     <section id="experience">
-      <p class="section__text__p1">Explore My</p>
-      <h1 class="title">Experience</h1>
+      <p class="section__text__p1">Découvrez mon</p>
+      <h1 class="title">Expérience</h1>
       <div class="experience-details-container">
         <div class="about-containers">
           <div class="details-container">
-            <h2 class="experience-sub-title">Frontend Development</h2>
+            <h2 class="experience-sub-title">Développement Frontend</h2>
             <div class="article-container">
               <article>
                 <img
@@ -139,7 +151,7 @@
                 />
                 <div>
                   <h3>HTML</h3>
-                  <p>Experienced</p>
+                  <p>Base</p>
                 </div>
               </article>
               <article>
@@ -150,7 +162,7 @@
                 />
                 <div>
                   <h3>CSS</h3>
-                  <p>Experienced</p>
+                  <p>Base</p>
                 </div>
               </article>
               <article>
@@ -161,13 +173,24 @@
                 />
                 <div>
                   <h3>JavaScript</h3>
-                  <p>Basic</p>
+                  <p>Base</p>
+                </div>
+              </article>
+              <article>
+                <img
+                  src="./assets/checkmark.png"
+                  alt="Experience icon"
+                  class="icon"
+                />
+                <div>
+                  <h3>Flutter</h3>
+                  <p>Intermédiaire</p>
                 </div>
               </article>
             </div>
           </div>
           <div class="details-container">
-            <h2 class="experience-sub-title">Backend Development</h2>
+            <h2 class="experience-sub-title">Développement Backend</h2>
             <div class="article-container">
               <article>
                 <img
@@ -177,7 +200,7 @@
                 />
                 <div>
                   <h3>PostgreSQL</h3>
-                  <p>Basic</p>
+                  <p>Base</p>
                 </div>
               </article>
               <article>
@@ -188,7 +211,7 @@
                 />
                 <div>
                   <h3>Node JS</h3>
-                  <p>Intermediate</p>
+                  <p>Base</p>
                 </div>
               </article>
               <article>
@@ -199,7 +222,7 @@
                 />
                 <div>
                   <h3>Express JS</h3>
-                  <p>Intermediate</p>
+                  <p>intermédiaire</p>
                 </div>
               </article>
               <article>
@@ -210,7 +233,7 @@
                 />
                 <div>
                   <h3>TypeScript</h3>
-                  <p>Basic</p>
+                  <p>intermédiaire</p>
                 </div>
               </article>
               <article>
@@ -221,7 +244,7 @@
                 />
                 <div>
                   <h3>Java</h3>
-                  <p>Intermediate</p>
+                  <p>Intermédiaire</p>
                 </div>
               </article>
               <article>
@@ -232,7 +255,7 @@
                 />
                 <div>
                   <h3>Python</h3>
-                  <p>Intermediate</p>
+                  <p>Intermédiaire</p>
                 </div>
               </article>
               <article>
@@ -243,7 +266,7 @@
                 />
                 <div>
                   <h3>Git</h3>
-                  <p>Intermediate</p>
+                  <p>Intermédiaire</p>
                 </div>
               </article>
             </div>
@@ -254,8 +277,8 @@
 
     <!-- Projects Section -->
     <section id="projects">
-      <p class="section__text__p1">Browse My Recent</p>
-      <h1 class="title">Projects</h1>
+      <p class="section__text__p1">Parcourez</p>
+      <h1 class="title">mes projets récents</h1>
       <div class="experience-details-container">
         <div class="about-containers">
           <div class="details-container color-container">
@@ -280,11 +303,11 @@
                 class="btn btn-color-2 project-btn"
                 onclick="location.href='https://drive.google.com/file/d/1GNoI4bMbtajqU7q1QDSAhnXwuJLLPN5n/view?usp=sharing'"
               >
-                Live Demo
+                Démonstration
               </button>
             </div>
           </div>
-          <div class="details-container color-container">
+          <!---<div class="details-container color-container">
             <div class="article-container">
               <img
                 src="./assets/project-2.png"
@@ -304,10 +327,10 @@
                 class="btn btn-color-2 project-btn"
                 onclick="location.href='https://github.com/'"
               >
-                Live Demo
+                Démonstration
               </button>
             </div>
-          </div>
+          </div> --->
           <!--- <div class="details-container color-container">
             <div class="article-container">
               <img
@@ -338,8 +361,8 @@
 
     <!-- Contact Section -->
     <section id="contact">
-      <p class="section__text__p1">Get in Touch</p>
-      <h1 class="title">Contact Me</h1>
+      <p class="section__text__p1">Entrer en Contact</p>
+      <h1 class="title">Contactez-moi</h1>
       <div class="contact-info-upper-container">
         <div class="contact-info-container">
           <img
@@ -371,9 +394,9 @@
       <nav>
         <div class="nav-links-container">
           <ul class="nav-links">
-            <li><a href="#about">About</a></li>
-            <li><a href="#experience">Experience</a></li>
-            <li><a href="#projects">Projects</a></li>
+            <li><a href="#about">À Propos</a></li>
+            <li><a href="#experience">Expérience</a></li>
+            <li><a href="#projects">Projets</a></li>
             <li><a href="#contact">Contact</a></li>
           </ul>
         </div>
