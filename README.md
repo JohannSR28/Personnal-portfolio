@@ -24,11 +24,3 @@ Showcasing my skills as a **Web Developer** with a focus on **responsive, modern
 - Intersection Observer API
 - HTML5 & CSS3
 
----
-
-## 🚀 Get Started
-```bash
-git clone https://github.com/your-username/portfolio.git
-cd portfolio
-npm install
-npm run dev
