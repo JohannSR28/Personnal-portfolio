@@ -1,0 +1,59 @@
+/* Migra Extralight */
+@font-face {
+  font-family: "Migra";
+  src: url("../../public/fonts/Migra/Migra-Extralight.woff2") format("woff2"),
+    url("../../public/fonts/Migra/Migra-Extralight.woff") format("woff"),
+    url("../../public/fonts/Migra/Migra-Extralight.ttf") format("truetype"),
+    url("../../public/fonts/Migra/Migra-Extralight.otf") format("opentype"),
+    url("../../public/fonts/Migra/Migra-Extralight.eot");
+  font-weight: 200;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Migra Extralight Italic */
+@font-face {
+  font-family: "Migra";
+  src: url("../../public/fonts/Migra/MigraItalic-ExtralightItalic.woff2")
+      format("woff2"),
+    url("../../public/fonts/Migra/MigraItalic-ExtralightItalic.woff")
+      format("woff"),
+    url("../../public/fonts/Migra/MigraItalic-ExtralightItalic.ttf")
+      format("truetype"),
+    url("../../public/fonts/Migra/MigraItalic-ExtralightItalic.otf")
+      format("opentype"),
+    url("../../public/fonts/Migra/MigraItalic-ExtralightItalic.eot");
+  font-weight: 200;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* Migra Extrabold */
+@font-face {
+  font-family: "Migra";
+  src: url("../../public/fonts/Migra/Migra-Extrabold.woff2") format("woff2"),
+    url("../../public/fonts/Migra/Migra-Extrabold.woff") format("woff"),
+    url("../../public/fonts/Migra/Migra-Extrabold.ttf") format("truetype"),
+    url("../../public/fonts/Migra/Migra-Extrabold.otf") format("opentype"),
+    url("../../public/fonts/Migra/Migra-Extrabold.eot");
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Migra Extrabold Italic */
+@font-face {
+  font-family: "Migra";
+  src: url("../../public/fonts/Migra/MigraItalic-ExtraboldItalic.woff2")
+      format("woff2"),
+    url("../../public/fonts/Migra/MigraItalic-ExtraboldItalic.woff")
+      format("woff"),
+    url("../../public/fonts/Migra/MigraItalic-ExtraboldItalic.ttf")
+      format("truetype"),
+    url("../../public/fonts/Migra/MigraItalic-ExtraboldItalic.otf")
+      format("opentype"),
+    url("../../public/fonts/Migra/MigraItalic-ExtraboldItalic.eot");
+  font-weight: 800;
+  font-style: italic;
+  font-display: swap;
+}
