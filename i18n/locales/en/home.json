@@ -1,0 +1,104 @@
+{
+  "textlines": [
+    "Hi, I'm a Web Developer specialized in",
+    "crafting clean, responsive, and engaging interfaces.",
+    "With full-stack skills that let me design, build,",
+    "and deploy complete applications, I deliver",
+    "complete websites combining aesthetics,",
+    "performance and reliability."
+  ],
+  "aboutMe": {
+    "title": "About Me",
+    "paragraphs": [
+      "I started coding at university while studying Mathematics and Computer Science. I was drawn to programming because it channels the mathematical and logical reasoning I enjoy, and that curiosity quickly grew into a genuine passion for software development.",
+      "Since then I’ve focused on building end-to-end web and mobile applications using React, Next.js, Flutter, Node.js and MongoDB. Through coursework and hands-on projects, I’ve implemented secure authentication, automated CI/CD workflows, and built user-centered interfaces.",
+      "I’m motivated by solving practical problems and creating tools that make people’s lives easier. Explore my projects to see examples of my work, or <a href=\"#contact\" class=\"underline\">get in touch</a> if you’d like to collaborate."
+    ],
+    "profiles": {
+      "title": "See my profiles :",
+      "github": "GitHub",
+      "cv": "Download CV",
+      "linkedin": "LinkedIn"
+    }
+  },
+  "techStack": {
+    "title": "My Recent Tech Stack"
+  },
+  "projects": {
+    "title": "My Projects",
+    "description": "Here are some of my recent works:",
+    "role": "Role",
+    "liveDemo": "Live Demo",
+    "githubRepo": "GitHub Repo",
+    "techStack": "Tech Stack",
+    "projectList": [
+      {
+        "title": "How to Cook",
+        "role": "Web Developer, main creator",
+        "description": "This project is a online sharing platform for cooking recipes. Users can browse, search, and share their favorite recipes with others.",
+        "features": [
+          "Secure Authentication with JWT and bcrypt",
+          "Real-time Search and Filtering",
+          "Responsive Design with Tailwind CSS",
+          "Restful API with Next.js"
+        ],
+        "techStack": "React, Next.js, Tailwind CSS",
+        "media": [
+          {
+            "type": "image",
+            "src": "/media/howToCook/image_1.png",
+            "alt": "Project image"
+          },
+          {
+            "type": "image",
+            "src": "/media/howToCook/image_2.png",
+            "alt": "Second image"
+          }
+        ],
+        "layout": "left",
+        "liveDemoUrl": "https://how-to-cook-cyan.vercel.app/",
+        "gitHubUrl": "https://github.com/JohannSR28/HowToCook"
+      },
+      {
+        "title": "Café Sans Fil (Mobile App)",
+        "role": "Mobile Applications Developer",
+        "description": "A full-featured management application for a student-run café, designed to organize volunteer schedules and manage inventory. Developed as a team project in Montreal (May–August 2024).",
+        "features": [
+          "40% workload reduction with dynamic volunteer scheduling",
+          "Secure JWT authentication with role-based access",
+          "CI/CD automation using GitHub Actions",
+          "Dashboards for financial and inventory data"
+        ],
+        "techStack": "Flutter/Dart, Node.js (TypeScript), Express.js, MongoDB",
+        "media": [
+          {
+            "type": "video",
+            "src": "/media/cafeSansFil/cafeSansFil.mp4",
+            "poster": "/media/cafeSansFil/cafeSansFil.png",
+            "alt": "Image 2"
+          }
+        ],
+        "layout": "right",
+        "liveDemoUrl": "https://drive.google.com/file/d/1GNoI4bMbtajqU7q1QDSAhnXwuJLLPN5n/view",
+        "gitHubUrl": "https://github.com/ceduni/cafe-sans-fil/tree/mobile"
+      }
+    ]
+  },
+  "contact": {
+    "title": "Contact Me",
+    "description": "I'm always eager to explore new opportunities and exciting projects. Feel free to send me a message.",
+    "form": {
+      "namePlaceholder": "Your Name",
+      "emailPlaceholder": "Your Email",
+      "messagePlaceholder": "Your Message",
+      "sending": "Sending...",
+      "sendMessage": "Send Message",
+      "errors": {
+        "nameRequired": "Name is required",
+        "invalidEmail": "Invalid email",
+        "messageRequired": "Message is required",
+        "generic": "An error occurred. Please try again."
+      }
+    }
+  }
+}

@@ -1,18 +1,14 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
+import { useTranslation } from "react-i18next";
 
 export default function HeroSection() {
   const sectionRef = useRef<HTMLElement | null>(null);
   const [visibleLines, setVisibleLines] = useState<number[]>([]);
 
-  const textLines = [
-    "Hi, I'm a Web Developer specialized in",
-    "crafting clean, responsive, and engaging interfaces.",
-    "With full-stack skills that let me design, build,",
-    "and deploy complete applications, I deliver",
-    "complete websites combining aesthetics,",
-    "performance and reliability.",
-  ];
+  const { t } = useTranslation("home");
+
+  const textLines = t("textlines", { returnObjects: true }) as string[];
 
   useEffect(() => {
     if (!sectionRef.current) return;

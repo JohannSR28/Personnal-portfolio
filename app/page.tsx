@@ -1,3 +1,5 @@
+"use client";
+
 import BackgroundNoise from "../components/ui/BackgroundNoise";
 import Header from "../components/Header";
 import HeroSection from "../components/HeroSection";
@@ -21,5 +23,3 @@ export default function Home() {
     </>
   );
 }
-
-/*rend to code modulaire,, découpe le en plusieur fichier afin de rendre le code facilement manipulable et lisible, essaiye de ne pas faire des fichier de plus de 50 ligne de code*/

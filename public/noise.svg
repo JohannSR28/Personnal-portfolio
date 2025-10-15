@@ -1,0 +1,29 @@
+
+  <svg xmlns="http://www.w3.org/2000/svg"
+       width="2048" height="2048"
+       viewBox="0 0 100 100"
+       preserveAspectRatio="xMidYMid slice">
+    <defs>
+      <filter id="darkNoiseFilter">
+        <feTurbulence
+          type="fractalNoise"
+          baseFrequency="120"
+          numOctaves="8"
+          stitchTiles="stitch"
+          result="noise"
+        />
+        <feColorMatrix
+          in="noise"
+          type="matrix"
+          values="
+    0 0 0 0 0.15
+    0 0 0 0 0.05
+    0 0 0 0 0.08
+    0 0 0 0.6 0
+  "
+          result="darkNoise"
+        />
+      </filter>
+    </defs>
+    <rect width="100%" height="100%" filter="url(#darkNoiseFilter)" />
+  </svg>

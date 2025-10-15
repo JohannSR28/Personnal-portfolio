@@ -1,11 +1,13 @@
 "use client";
 
 import React from "react";
+import { useTranslation } from "react-i18next";
+import { useLanguage } from "@/context/languageContext";
 
 const iconeStyle =
   "text-white no-underline text-2xl max-sm:text-xl p-2 max-sm:p-1 rounded-lg transition-colors duration-300 hover:bg-white/10 hover:text-white";
 
-const iconInfo = {
+const iconInfo: { [key: string]: { href: string; iconClass: string } } = {
   home: {
     href: "#about-me",
     iconClass: "bi bi-house-door",
@@ -22,7 +24,9 @@ const iconInfo = {
 };
 
 export default function Header() {
-  // custom function to handle smooth scrolling with offset
+  const { t } = useTranslation("common");
+  const { language, changeLanguage } = useLanguage();
+
   const handleScroll = (
     e: React.MouseEvent<HTMLAnchorElement, MouseEvent>,
     href: string
@@ -56,12 +60,20 @@ export default function Header() {
                 href={href}
                 className={iconeStyle}
                 onClick={(e) => handleScroll(e, href)}
+                title={t(`nav.${key}`)}
               >
                 <i className={iconClass} />
               </a>
             </li>
           ))}
         </ul>
+        <button
+          onClick={() => {
+            changeLanguage(language === "fr" ? "en" : "fr");
+          }}
+        >
+          {language}
+        </button>
       </nav>
     </header>
   );

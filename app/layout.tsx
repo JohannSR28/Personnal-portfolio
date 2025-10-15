@@ -1,3 +1,4 @@
+import { LanguageProvider } from "@/context/languageContext";
 import type { Metadata } from "next";
 import "./globals.css";
 
@@ -26,7 +27,7 @@ export default function RootLayout({
         />
       </head>
       <body className="font-migra text-white min-h-screen relative m-0 pb-30">
-        {children}
+        <LanguageProvider>{children}</LanguageProvider>
       </body>
     </html>
   );

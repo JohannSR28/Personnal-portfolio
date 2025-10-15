@@ -1,0 +1,104 @@
+{
+  "textlines": [
+    "Bonjour, je suis un développeur web spécialisé dans la",
+    "création d'interfaces soignées, réactives et engageantes.",
+    "Avec des compétences full-stack qui me permettent de concevoir, construire,",
+    "et déployer des applications complètes, je livre",
+    "des sites web complets alliant esthétique,",
+    "performance et fiabilité."
+  ],
+  "aboutMe": {
+    "title": "À propos de moi",
+    "paragraphs": [
+      "J'ai commencé à coder à l'université en étudiant les mathématiques et l'informatique. J'ai été attiré par la programmation car elle canalise le raisonnement mathématique et logique que j'apprécie, et cette curiosité s'est rapidement transformée en une véritable passion pour le développement de logiciels.",
+      "Depuis, je me suis concentré sur la création d'applications web et mobiles de bout en bout en utilisant React, Next.js, Flutter, Node.js et MongoDB. Grâce à des cours et à des projets pratiques, j'ai mis en œuvre une authentification sécurisée, des flux de travail CI/CD automatisés et des interfaces centrées sur l'utilisateur.",
+      "Je suis motivé par la résolution de problèmes pratiques et la création d'outils qui facilitent la vie des gens. Explorez mes projets pour voir des exemples de mon travail, ou <a href=\"#contact\" class=\"underline\">contactez-moi</a> si vous souhaitez collaborer."
+    ],
+    "profiles": {
+      "title": "Voir mes profils :",
+      "github": "GitHub",
+      "cv": "Télécharger le CV",
+      "linkedin": "LinkedIn"
+    }
+  },
+  "techStack": {
+    "title": "Ma stack technique récente"
+  },
+  "projects": {
+    "title": "Mes projets",
+    "description": "Voici quelques-uns de mes travaux récents :",
+    "role": "Rôle",
+    "liveDemo": "Démo en direct",
+    "githubRepo": "Dépôt GitHub",
+    "techStack": "Stack technique",
+    "projectList": [
+      {
+        "title": "How to Cook",
+        "role": "Développeur web, créateur principal",
+        "description": "Ce projet est une plateforme de partage en ligne de recettes de cuisine. Les utilisateurs peuvent parcourir, rechercher et partager leurs recettes préférées avec d'autres.",
+        "features": [
+          "Authentification sécurisée avec JWT et bcrypt",
+          "Recherche et filtrage en temps réel",
+          "Conception réactive avec Tailwind CSS",
+          "API Restful avec Next.js"
+        ],
+        "techStack": "React, Next.js, Tailwind CSS",
+        "media": [
+          {
+            "type": "image",
+            "src": "/media/howToCook/image_1.png",
+            "alt": "Image du projet"
+          },
+          {
+            "type": "image",
+            "src": "/media/howToCook/image_2.png",
+            "alt": "Deuxième image"
+          }
+        ],
+        "layout": "left",
+        "liveDemoUrl": "https://how-to-cook-cyan.vercel.app/",
+        "gitHubUrl": "https://github.com/JohannSR28/HowToCook"
+      },
+      {
+        "title": "Café Sans Fil (Application Mobile)",
+        "role": "Développeur d'applications mobiles",
+        "description": "Une application de gestion complète pour un café étudiant, conçue pour organiser les horaires des bénévoles et gérer les stocks. Développé en équipe à Montréal (mai-août 2024).",
+        "features": [
+          "Réduction de 40 % de la charge de travail grâce à la planification dynamique des bénévoles",
+          "Authentification JWT sécurisée avec accès basé sur les rôles",
+          "Automatisation CI/CD avec GitHub Actions",
+          "Tableaux de bord pour les données financières et d'inventaire"
+        ],
+        "techStack": "Flutter/Dart, Node.js (TypeScript), Express.js, MongoDB",
+        "media": [
+          {
+            "type": "video",
+            "src": "/media/cafeSansFil/cafeSansFil.mp4",
+            "poster": "/media/cafeSansFil/cafeSansFil.png",
+            "alt": "Image 2"
+          }
+        ],
+        "layout": "right",
+        "liveDemoUrl": "https://drive.google.com/file/d/1GNoI4bMbtajqU7q1QDSAhnXwuJLLPN5n/view",
+        "gitHubUrl": "https://github.com/ceduni/cafe-sans-fil/tree/mobile"
+      }
+    ]
+  },
+  "contact": {
+    "title": "Contactez-moi",
+    "description": "Je suis toujours désireux d'explorer de nouvelles opportunités et des projets passionnants. N'hésitez pas à m'envoyer un message.",
+    "form": {
+      "namePlaceholder": "Votre nom",
+      "emailPlaceholder": "Votre e-mail",
+      "messagePlaceholder": "Votre message",
+      "sending": "Envoi en cours...",
+      "sendMessage": "Envoyer le message",
+      "errors": {
+        "nameRequired": "Le nom est requis",
+        "invalidEmail": "Email invalide",
+        "messageRequired": "Le message est requis",
+        "generic": "Une erreur est survenue. Veuillez réessayer."
+      }
+    }
+  }
+}

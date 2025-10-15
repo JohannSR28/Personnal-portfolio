@@ -7,6 +7,7 @@ import {
   SiMongodb,
 } from "react-icons/si";
 import Section from "./ui/Section";
+import { useTranslation } from "react-i18next";
 
 const techStack = [
   {
@@ -27,10 +28,11 @@ const techStack = [
 ];
 
 export default function TechStackSection() {
+  const { t } = useTranslation("home");
   return (
     <Section id="tech-stack" className="max-md:px-4 max-md:mx-4 mb-8">
       <h2 className="text-4xl mb-10 font-migra-extrabold">
-        My Recent Tech Stack
+        {t("techStack.title")}
       </h2>
       <ul className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-6">
         {techStack.map((tech, index) => (

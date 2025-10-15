@@ -2,6 +2,7 @@
 
 import MediaCarousel from "@/components/mediaCarousel/MediaCarousel";
 import type { MediaItem } from "@/components/mediaCarousel/MediaCarousel";
+import { useTranslation } from "react-i18next";
 
 interface ProjectPresentationProps {
   title: string;
@@ -30,6 +31,7 @@ export default function ProjectPresentation({
   liveDemoUrl,
   gitHubUrl,
 }: ProjectPresentationProps) {
+  const { t } = useTranslation("home");
   const handleLiveDemoClick = () => {
     if (onLiveDemoClick) {
       onLiveDemoClick();
@@ -49,7 +51,7 @@ export default function ProjectPresentation({
   const InfoSection = () => (
     <div className="flex flex-col items-start justify-start p-4 font-roboto">
       <h3 className="text-3xl font-migra-extrabold mb-2">{title}</h3>
-      <p className="mb-4">Role : {role}</p>
+      <p className="mb-4">{t("projects.role")} : {role}</p>
       <p className="mb-4">{description}</p>
       <ul className="list-disc list-inside mb-4">
         {features.map((feature, index) => (
@@ -62,7 +64,7 @@ export default function ProjectPresentation({
             onClick={handleLiveDemoClick}
             className="font-migra-extrabold bg-white text-[#230d11] p-2 rounded transition-all duration-300 ease-in-out hover:bg-transparent hover:text-white active:scale-95"
           >
-            Live Demo
+            {t("projects.liveDemo")}
           </a>
         )}
         {(onGitHubClick || gitHubUrl) && (
@@ -70,12 +72,12 @@ export default function ProjectPresentation({
             onClick={handleGitHubClick}
             className="font-migra-extrabold bg-white text-[#230d11] p-2 rounded transition-all duration-300 ease-in-out hover:bg-transparent hover:text-white active:scale-95"
           >
-            GitHub Repo
+            {t("projects.githubRepo")}
           </a>
         )}
       </div>
       <div>
-        Tech Stack:
+        {t("projects.techStack")}:
         <span className="ml-2">{techStack}</span>
       </div>
     </div>
