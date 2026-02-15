@@ -11,8 +11,8 @@ export const translations = {
     hero: {
       greeting: "Bonjour, je suis un",
       role1: "Développeur",
-      role2: "Full Stack Web.",
-      slogan: "Transformer la Logique en Émotion",
+      role2: "Web Full Stack.",
+      slogan: "Transformant Logique en Émotion",
     },
     about: {
       title: "À propos",
