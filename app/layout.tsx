@@ -1,17 +1,16 @@
 import type { Metadata } from "next";
 import { Fraunces, Outfit } from "next/font/google";
 import "./globals.css";
+import { Providers } from "./providers"; // ← Changement ici
 
-// Configuration de Fraunces
 const fraunces = Fraunces({
   variable: "--font-fraunces",
   subsets: ["latin"],
   style: ["normal", "italic"],
-  axes: ["SOFT", "WONK", "opsz"], // On active les axes variables pour le style
+  axes: ["SOFT", "WONK", "opsz"],
   display: "swap",
 });
 
-// Configuration de Outfit
 const outfit = Outfit({
   variable: "--font-outfit",
   subsets: ["latin"],
@@ -31,7 +30,7 @@ export default function RootLayout({
   return (
     <html lang="fr" className={`${fraunces.variable} ${outfit.variable}`}>
       <body className="antialiased bg-deep-wine text-soft-clay">
-        {children}
+        <Providers>{children}</Providers>
       </body>
     </html>
   );

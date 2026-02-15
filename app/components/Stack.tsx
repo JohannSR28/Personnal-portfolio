@@ -1,10 +1,11 @@
 "use client";
 
 import React from "react";
-// On n'a plus besoin d'importer Image de next/image pour ces icônes
-// import Image from "next/image";
+import { useLanguage } from "../context/languageContext";
 
 export default function Stack() {
+  const { t } = useLanguage(); // Récupération des textes
+
   return (
     <section
       id="services-section"
@@ -14,13 +15,12 @@ export default function Stack() {
         {/* COLONNE GAUCHE - STICKY */}
         <div className="lg:col-span-4 lg:sticky lg:top-32 mb-12 lg:mb-0">
           <h2 className="text-[12vw] lg:text-[6.5rem] font-display font-light text-soft-clay opacity-90 leading-tight">
-            My
+            {t.stack.title}
             <br />
-            <span className="italic opacity-50 ml-4">Stack.</span>
+            <span className="italic opacity-50 ml-4">{t.stack.subtitle}</span>
           </h2>
           <p className="mt-8 text-lg font-body font-light opacity-60">
-            Mon arsenal technique récent pour bâtir des expériences digitales
-            robustes.
+            {t.stack.description}
           </p>
         </div>
 
@@ -29,7 +29,7 @@ export default function Stack() {
           {/* Main Stack */}
           <div>
             <h4 className="text-sm font-body uppercase tracking-[0.3em] opacity-40 mb-6">
-              Main Stack
+              {t.stack.sectionMain}
             </h4>
             <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
               {[
@@ -41,7 +41,6 @@ export default function Stack() {
                 { name: "Tailwind", icon: "tailwindcss" },
               ].map((tech) => (
                 <div key={tech.name} className="tech-card group">
-                  {/* CORRECTION ICI : Utilisation de <img> standard */}
                   <img
                     src={`https://cdn.simpleicons.org/${tech.icon}/eecbcb`}
                     className="tech-icon-img"
@@ -60,10 +59,10 @@ export default function Stack() {
           {/* Experience */}
           <div>
             <h4 className="text-sm font-body uppercase tracking-[0.3em] opacity-40 mb-6">
-              Experience
+              {t.stack.sectionExp}
             </h4>
             <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
-              {/* Cas Spécial JAVA (Reste inchangé car il marche bien) */}
+              {/* Cas Spécial JAVA */}
               <div className="tech-card group py-6">
                 <div
                   className="w-10 h-10 bg-[#eecbcb] transition-all duration-300 group-hover:bg-white"
@@ -87,7 +86,6 @@ export default function Stack() {
                 { name: "MongoDB", icon: "mongodb" },
               ].map((tech) => (
                 <div key={tech.name} className="tech-card group py-6">
-                  {/* CORRECTION ICI : Utilisation de <img> standard */}
                   <img
                     src={`https://cdn.simpleicons.org/${tech.icon}/eecbcb`}
                     className="tech-icon-img"

@@ -1,6 +1,11 @@
+"use client";
+
 import React from "react";
+import { useLanguage } from "../context/languageContext";
 
 export default function Hero() {
+  const { t } = useLanguage(); // On récupère les traductions
+
   return (
     <section
       id="hero-section"
@@ -11,7 +16,7 @@ export default function Hero() {
           className="font-body text-lg md:text-xl uppercase tracking-[0.3em] opacity-60 animate-reveal"
           style={{ animationDelay: "0.1s" }}
         >
-          Hello, I&apos;m a
+          {t.hero.greeting}
         </p>
 
         <div className="flex flex-col items-center leading-[0.85]">
@@ -20,7 +25,7 @@ export default function Hero() {
               className="text-[17vw] md:text-[8rem] font-display font-light text-soft-clay mix-blend-overlay animate-reveal"
               style={{ animationDelay: "0.2s" }}
             >
-              Web Full Stack
+              {t.hero.role1}
             </h1>
           </div>
           <div className="hero-word-mask">
@@ -28,7 +33,7 @@ export default function Hero() {
               className="text-[17vw] md:text-[8rem] font-display font-light italic text-white opacity-90 animate-reveal"
               style={{ animationDelay: "0.4s" }}
             >
-              Developer.
+              {t.hero.role2}
             </h1>
           </div>
         </div>
@@ -37,7 +42,7 @@ export default function Hero() {
           className="font-body text-sm md:text-base tracking-[0.4em] uppercase opacity-40 animate-reveal mt-8"
           style={{ animationDelay: "0.8s" }}
         >
-          Turning Logic into Emotion
+          {t.hero.slogan}
         </p>
       </div>
     </section>

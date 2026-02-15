@@ -1,9 +1,12 @@
 "use client";
 
 import React, { useState } from "react";
+// Import du hook de traduction
+import { useLanguage } from "../context/languageContext";
 
 export default function Contact() {
   const [message, setMessage] = useState("");
+  const { t } = useLanguage(); // Récupération des textes
 
   return (
     <section
@@ -14,14 +17,13 @@ export default function Contact() {
         {/* COLONNE GAUCHE - Sticky Title */}
         <div className="space-y-8 lg:sticky lg:top-32">
           <h2 className="text-[12vw] lg:text-[6.5rem] font-display font-light text-soft-clay opacity-90 leading-none">
-            Contact
+            {t.contact.title}
             <br />
-            <span className="italic opacity-50 ml-4">Me.</span>
+            <span className="italic opacity-50 ml-4">{t.contact.subtitle}</span>
           </h2>
           <div className="glass-card-premium p-8 max-w-md">
             <p className="text-lg font-light opacity-80 font-body">
-              Je suis toujours désireux d&apos;explorer de nouvelles
-              opportunités. N&apos;hésitez pas à m&apos;envoyer un message.
+              {t.contact.description}
             </p>
           </div>
         </div>
@@ -32,13 +34,13 @@ export default function Contact() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               <input
                 type="text"
-                placeholder="Votre nom"
+                placeholder={t.contact.form.name} // Placeholder traduit
                 className="contact-input"
                 required
               />
               <input
                 type="email"
-                placeholder="Votre e-mail"
+                placeholder={t.contact.form.email} // Placeholder traduit
                 className="contact-input"
                 required
               />
@@ -46,7 +48,7 @@ export default function Contact() {
 
             <div className="relative">
               <textarea
-                placeholder="Votre Message"
+                placeholder={t.contact.form.message} // Placeholder traduit
                 rows={4}
                 className="contact-input resize-none"
                 maxLength={5000}
@@ -54,7 +56,7 @@ export default function Contact() {
                 onChange={(e) => setMessage(e.target.value)}
               ></textarea>
               <div className="text-right text-xs text-soft-clay/40 mt-2 font-mono">
-                {message.length}/5000 characters
+                {message.length}/5000 {t.contact.form.chars}
               </div>
             </div>
 
@@ -62,7 +64,7 @@ export default function Contact() {
               type="submit"
               className="group flex items-center gap-4 text-2xl font-display font-light italic text-white hover:opacity-80 transition-opacity"
             >
-              Envoyer le message
+              {t.contact.form.btn} {/* Texte bouton traduit */}
               <div className="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center group-hover:bg-white/10 transition-all">
                 <svg
                   width="20"

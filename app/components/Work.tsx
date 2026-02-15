@@ -4,29 +4,36 @@ import React, { useLayoutEffect, useRef, useState, useEffect } from "react";
 import Image from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useLanguage } from "../context/languageContext";
 
 gsap.registerPlugin(ScrollTrigger);
 
-// ... (Garde les interfaces MediaType, Project et l'objet projects inchangés) ...
+// --- TYPES ---
 type MediaType = { type: "img" | "video"; url: string };
-interface Project {
+
+// Type pour les données statiques (avant traduction)
+interface StaticProject {
   id: string;
   number: string;
   title: string;
-  description: string;
   media: MediaType[];
   liveLink: string;
   codeLink: string;
 }
 
-const projects: Project[] = [
-  // ... tes données projets ...
+// Type final complet (après fusion avec la traduction)
+interface Project extends StaticProject {
+  description: string;
+  textLive: string;
+  textCode: string;
+}
+
+// --- DONNÉES STATIQUES ---
+const staticProjectsData: StaticProject[] = [
   {
     id: "jobtrack",
     number: "01",
     title: "JobTrack AI",
-    description:
-      "Une solution SaaS intelligente pour organiser vos applications...",
     media: [
       { type: "img", url: "/media/jobtrackai/a.png" },
       { type: "img", url: "/media/jobtrackai/b.png" },
@@ -39,7 +46,6 @@ const projects: Project[] = [
     id: "tactorelia",
     number: "02",
     title: "Tactorelia",
-    description: "Une plateforme de mentorat propulsée par l'IA...",
     media: [
       { type: "img", url: "/media/tactorelia/a.png" },
       { type: "img", url: "/media/tactorelia/b.png" },
@@ -51,7 +57,6 @@ const projects: Project[] = [
     id: "cafesansfil",
     number: "03",
     title: "Café Sans Fil",
-    description: "Une application de gestion complète pour un café étudiant...",
     media: [
       { type: "video", url: "/media/cafeSansFil/cafeSansFil.mp4" },
       { type: "img", url: "/media/cafeSansFil/cafeSansFil.png" },
@@ -61,6 +66,7 @@ const projects: Project[] = [
   },
 ];
 
+// --- SOUS-COMPOSANT PROJET ---
 const ProjectItem = ({ project }: { project: Project }) => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const mediaCount = project.media.length;
@@ -90,9 +96,9 @@ const ProjectItem = ({ project }: { project: Project }) => {
   return (
     <div className="project-section w-[100vw] h-screen flex items-center justify-center px-[4vw] flex-shrink-0 relative">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 w-full max-w-[90vw] items-center">
+        {/* MEDIA */}
         <div className="flex flex-col items-center justify-center order-2 lg:order-1">
           <div className="viewer-wrapper w-full flex flex-col items-center">
-            {/* CONTAINER 3/2 (Ratio Photo) & Fond Noir */}
             <div className="viewer-container relative w-full max-w-[600px] aspect-[3/2] rounded-[4px] overflow-hidden bg-black border border-white/5 shadow-2xl">
               {project.media.map((item, index) => {
                 const isActive = index === currentSlide;
@@ -125,7 +131,7 @@ const ProjectItem = ({ project }: { project: Project }) => {
               })}
             </div>
 
-            {/* Contrôles Discrets */}
+            {/* CONTROLS */}
             <div className="control-deck flex items-center gap-3 mt-3 anim-element px-4 py-1.5 bg-black/20 border border-white/5 rounded-full backdrop-blur-md">
               <button
                 onClick={() => changeSlide(-1)}
@@ -172,6 +178,7 @@ const ProjectItem = ({ project }: { project: Project }) => {
           </div>
         </div>
 
+        {/* TEXTE */}
         <div className="flex flex-col justify-center space-y-6 order-1 lg:order-2 lg:pl-4">
           <div className="anim-element">
             <span className="font-body text-sm tracking-[0.3em] uppercase opacity-40">
@@ -190,7 +197,7 @@ const ProjectItem = ({ project }: { project: Project }) => {
               target={isLiveDisabled ? undefined : "_blank"}
               className={`link-about-style group ${isLiveDisabled ? "opacity-30 cursor-not-allowed" : ""}`}
             >
-              Check Live{" "}
+              {project.textLive}{" "}
               <span className="group-hover:translate-x-1 transition-transform">
                 →
               </span>
@@ -208,8 +215,8 @@ const ProjectItem = ({ project }: { project: Project }) => {
                 className="opacity-80"
               >
                 <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.042-1.416-4.042-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
-              </svg>{" "}
-              Github Code
+              </svg>
+              {project.textCode}
             </a>
           </div>
         </div>
@@ -218,9 +225,19 @@ const ProjectItem = ({ project }: { project: Project }) => {
   );
 };
 
+// --- COMPOSANT PRINCIPAL ---
 export default function Work() {
   const sectionRef = useRef<HTMLDivElement>(null);
   const trackRef = useRef<HTMLDivElement>(null);
+  const { t } = useLanguage();
+
+  // Fusion TYPÉE (plus de 'any')
+  const projects: Project[] = staticProjectsData.map((proj, i) => ({
+    ...proj,
+    description: t.work.items[i].description,
+    textLive: t.work.items[i].live,
+    textCode: t.work.items[i].code,
+  }));
 
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
@@ -283,19 +300,16 @@ export default function Work() {
       });
     }, sectionRef);
     return () => ctx.revert();
-  }, []);
+  }, [t]); // Ajout de 't' comme dépendance pour rejouer l'animation si la langue change
 
   return (
-    // La section principale doit avoir 'relative' et 'overflow-hidden' pour contenir le texte
     <section
       id="work-section"
       ref={sectionRef}
-      className="h-screen w-full relative overflow-hidden flex flex-col justify-center"
+      className="h-screen w-full relative overflow-hidden flex flex-col justify-center bg-deep-wine"
     >
-      {/* CORRECTION : ABSOLUTE au lieu de FIXED */}
-      {/* Le texte reste attaché à CETTE section uniquement */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[25vw] font-display italic text-white opacity-[0.03] whitespace-nowrap z-0 pointer-events-none">
-        Work.
+        {t.work.bgText}
       </div>
 
       <div
