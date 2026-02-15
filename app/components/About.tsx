@@ -4,7 +4,7 @@ import React from "react";
 import { useLanguage } from "../context/languageContext";
 
 export default function About() {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
 
   return (
     <section
@@ -52,7 +52,7 @@ export default function About() {
 
             <div className="pt-10 flex flex-wrap items-center gap-10">
               <a
-                href="https://linkedin.com"
+                href="https://www.linkedin.com/in/johann-sourou-8b351129a/"
                 target="_blank"
                 rel="noreferrer"
                 className="link-about-style group"
@@ -68,7 +68,7 @@ export default function About() {
                 {t.about.links.linkedin}
               </a>
               <a
-                href="https://github.com"
+                href="https://github.com/JohannSR28"
                 target="_blank"
                 rel="noreferrer"
                 className="link-about-style group"
@@ -84,7 +84,11 @@ export default function About() {
                 {t.about.links.github}
               </a>
               <a
-                href="assets/cv.pdf"
+                href={
+                  language == "fr"
+                    ? "/Johann_Sourou_f.pdf"
+                    : "/Johann_Sourou_e.pdf"
+                }
                 target="_blank"
                 className="link-about-style group"
               >
