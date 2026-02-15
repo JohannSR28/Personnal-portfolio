@@ -21,10 +21,7 @@
       tailwind.config = {
         theme: {
           extend: {
-            colors: {
-              "deep-wine": "rgb(35, 13, 17)",
-              "soft-clay": "#eecbcb",
-            },
+            colors: { "deep-wine": "rgb(35, 13, 17)", "soft-clay": "#eecbcb" },
             fontFamily: {
               display: ["Fraunces", "serif"],
               body: ["Outfit", "sans-serif"],
@@ -52,24 +49,30 @@
       };
     </script>
     <style>
-      html {
+      /* --- GLOBAL --- */
+      html::-webkit-scrollbar,
+      body::-webkit-scrollbar,
+      #projects-track::-webkit-scrollbar {
+        display: none !important;
+      }
+      html,
+      body {
+        scrollbar-width: none !important;
+        -ms-overflow-style: none !important;
         scroll-behavior: smooth;
-        font-size: 16px; /* Mobile First : Gros Textes */
+        font-size: 16px;
       }
 
+      /* Zoom out sur Desktop uniquement */
       @media (min-width: 1024px) {
         html {
-          font-size: 12.5px; /* Desktop : Zoom Out chic */
+          font-size: 12.5px;
         }
       }
 
       body {
         background-color: rgb(35, 13, 17);
         overflow-x: hidden;
-        scrollbar-width: none;
-      }
-      body::-webkit-scrollbar {
-        display: none;
       }
 
       /* --- UTILS --- */
@@ -118,7 +121,6 @@
         right: 3rem;
         text-align: right;
       }
-
       .hero-word-mask {
         overflow: hidden;
         display: inline-block;
@@ -140,13 +142,12 @@
         z-index: 0;
         pointer-events: none;
       }
-
       #projects-track {
         display: flex;
         height: 100%;
         width: max-content;
         will-change: transform;
-        padding-right: 10vw; /* Mobile Padding */
+        padding-right: 10vw;
       }
       @media (min-width: 1024px) {
         #projects-track {
@@ -172,10 +173,12 @@
         gap: 1.5rem;
         align-items: center;
       }
+
+      /* --- TAILLE IMAGE CORRIGÉE (MAX-WIDTH SUPPRIMÉ) --- */
       .viewer-container {
         position: relative;
         width: 100%;
-        max-width: 900px;
+        /* max-width supprimé pour permettre à l'image de grandir */
         aspect-ratio: 16/9;
         border-radius: 4px;
         overflow: hidden;
@@ -183,6 +186,7 @@
         border: 1px solid rgba(255, 255, 255, 0.05);
         box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
       }
+
       .slide-img {
         position: absolute;
         inset: 0;
@@ -192,46 +196,55 @@
         opacity: 0;
         transition: opacity 0.8s ease;
         transform: scale(1.01);
+        pointer-events: none;
       }
       .slide-img.active {
         opacity: 1;
+        pointer-events: auto;
+        z-index: 10;
       }
 
+      /* Vidéo active */
+      video.slide-img.active {
+        object-fit: contain;
+        background: black;
+      }
+
+      /* BOUTONS NAVIGATION (PETITS & ESTHÉTIQUES) */
       .control-deck {
         display: flex;
-        gap: 1px;
-        background: rgba(255, 255, 255, 0.03);
-        border: 1px solid rgba(255, 255, 255, 0.08);
+        gap: 4px;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.1);
         border-radius: 99px;
-        padding: 4px;
-        backdrop-filter: blur(10px);
-        margin-top: -20px;
+        padding: 3px;
+        backdrop-filter: blur(12px);
+        margin-top: -18px;
         z-index: 20;
-        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
         opacity: 0;
         transform: translateY(20px);
       }
       .deck-btn {
-        width: 44px;
-        height: 44px;
+        width: 32px;
+        height: 32px;
         display: flex;
         align-items: center;
         justify-content: center;
-        color: #eecbcb;
+        color: rgba(238, 203, 203, 0.8);
         cursor: pointer;
         border-radius: 50%;
-        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        transition: all 0.3s;
+        border: 1px solid transparent;
       }
       .deck-btn:hover {
         background: rgba(255, 255, 255, 0.1);
-        color: white;
-        transform: scale(1.1);
+        color: #fff;
+        border-color: rgba(255, 255, 255, 0.2);
+        transform: scale(1.05);
       }
       .deck-separator {
-        width: 1px;
-        height: 20px;
-        background: rgba(255, 255, 255, 0.1);
-        align-self: center;
+        display: none;
       }
 
       .link-about-style {
@@ -249,6 +262,13 @@
       .link-about-style:hover {
         opacity: 0.8;
         transform: translateX(5px);
+      }
+      .link-disabled {
+        opacity: 0.3 !important;
+        cursor: not-allowed;
+      }
+      .link-disabled:hover {
+        transform: none !important;
       }
 
       /* --- STACK & CONTACT --- */
@@ -278,7 +298,6 @@
       .tech-card:hover .tech-icon-img {
         filter: none;
       }
-
       .contact-input {
         background: transparent;
         border-bottom: 1px solid rgba(238, 203, 203, 0.2);
@@ -294,33 +313,9 @@
       .contact-input:focus {
         border-bottom-color: #eecbcb;
       }
-      .contact-input::placeholder {
-        color: rgba(238, 203, 203, 0.3);
-      }
-
       .anim-element {
         opacity: 0;
         transform: translateY(20px);
-      }
-
-      /* Cache la barre sur Chrome, Safari et Opera */
-      /* Pour Chrome, Safari, Edge et Opera */
-      html::-webkit-scrollbar,
-      body::-webkit-scrollbar,
-      #projects-track::-webkit-scrollbar {
-        display: none !important;
-      }
-
-      /* Pour Firefox */
-      html,
-      body {
-        scrollbar-width: none !important;
-      }
-
-      /* Pour Internet Explorer et Edge (ancienne version) */
-      html,
-      body {
-        -ms-overflow-style: none !important;
       }
     </style>
   </head>
@@ -387,19 +382,19 @@
     >
 
     <div
-      class="fixed right-6 md:right-10 top-1/2 -translate-y-1/2 z-40 hidden md:flex flex-col items-center gap-4"
+      class="fixed right-4 md:right-10 top-1/2 -translate-y-1/2 z-50 flex flex-col items-center gap-4 mix-blend-difference"
     >
       <div
-        class="w-[1px] h-10 bg-gradient-to-b from-transparent to-soft-clay/40"
+        class="hidden md:block w-[1px] h-12 bg-gradient-to-b from-transparent to-[#eecbcb]"
       ></div>
       <div
         id="scroll-progress"
-        class="font-body text-xs tracking-widest text-soft-clay"
+        class="font-body text-xs tracking-widest text-soft-clay font-medium"
       >
         0%
       </div>
       <div
-        class="w-[1px] h-10 bg-gradient-to-t from-transparent to-soft-clay/40"
+        class="hidden md:block w-[1px] h-12 bg-gradient-to-b from-[#eecbcb] to-transparent"
       ></div>
     </div>
 
@@ -415,7 +410,6 @@
           >
             Hello, I'm a
           </p>
-
           <div class="flex flex-col items-center leading-[0.85]">
             <div class="hero-word-mask">
               <h1
@@ -434,7 +428,6 @@
               </h1>
             </div>
           </div>
-
           <p
             class="font-body text-sm md:text-base tracking-[0.4em] uppercase opacity-40 animate-reveal mt-8"
             style="animation-delay: 0.8s"
@@ -478,22 +471,20 @@
                   Hello, I’m
                   <span class="font-display italic text-2xl text-white px-2"
                     >Johann Sourou</span
-                  >. Diplômé de l'<strong>Université de Montréal</strong>, j'ai
-                  forgé mes bases en mathématiques et informatique avant de
-                  plonger dans le monde professionnel. Fort de
-                  <strong>deux années d'expérience</strong>, je suis un
-                  développeur polyvalent capable de naviguer sur l'ensemble de
-                  la stack.
+                  >. Diplômé de l'<strong>Université de Montréal</strong> en
+                  mathématiques et informatique, je forge des solutions où la
+                  rigueur logique rencontre la créativité logicielle.
                 </p>
                 <p>
-                  Bien que je maîtrise le back-end, ma véritable passion et ma
-                  spécialisation résident dans le <strong>Front-end</strong> et
-                  l'écosystème <strong>React</strong>. C'est là que je m'exprime
-                  le mieux : en créant des interfaces soignées où la technique
-                  s'efface au profit de l'expérience utilisateur.
+                  Fort de <strong>deux années d'expérience</strong>, je me suis
+                  spécialisé dans l'écosystème <strong>React</strong> et le
+                  développement Full Stack. Mon approche est guidée par une
+                  passion pour le Front-end : créer des interfaces fluides où la
+                  complexité technique s'efface pour laisser place à l'émotion
+                  utilisateur.
                 </p>
               </div>
-              <div class="pt-10 flex flex-wrap items-center gap-8 md:gap-10">
+              <div class="pt-10 flex flex-wrap items-center gap-10">
                 <a
                   href="https://linkedin.com"
                   target="_blank"
@@ -503,7 +494,6 @@
                     height="20"
                     viewBox="0 0 24 24"
                     fill="currentColor"
-                    class="opacity-80"
                   >
                     <path
                       d="M4.98 3.5c0 1.381-1.11 2.5-2.48 2.5s-2.48-1.119-2.48-2.5c0-1.38 1.11-2.5 2.48-2.5s2.48 1.12 2.48 2.5zm.02 4.5h-5v16h5v-16zm7.982 0h-4.968v16h4.969v-8.399c0-4.67 6.029-5.052 6.029 0v8.399h4.988v-10.131c0-7.88-8.922-7.593-11.018-3.714v-2.155z"
@@ -520,7 +510,6 @@
                     height="20"
                     viewBox="0 0 24 24"
                     fill="currentColor"
-                    class="opacity-80"
                   >
                     <path
                       d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.042-1.416-4.042-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"
@@ -578,18 +567,15 @@
             class="lg:col-span-4 animate-float lg:sticky lg:top-32 mb-12 lg:mb-0"
           >
             <h2
-              class="text-[12vw] lg:text-[6.5rem] leading-[0.85] font-display font-light text-soft-clay tracking-tight opacity-90"
+              class="text-[12vw] lg:text-[6.5rem] font-display font-light text-soft-clay opacity-90 leading-tight"
             >
-              My<br /><span class="italic font-normal opacity-50 ml-4"
-                >Stack.</span
-              >
+              My<br /><span class="italic opacity-50 ml-4">Stack.</span>
             </h2>
-            <p class="mt-8 text-lg font-body font-light opacity-60 max-w-xs">
-              Mon arsenal technique. Une sélection d'outils modernes pour bâtir
-              des expériences digitales robustes.
+            <p class="mt-8 text-lg font-body font-light opacity-60">
+              Mon arsenal technique récent pour bâtir des expériences digitales
+              robustes.
             </p>
           </div>
-
           <div class="lg:col-span-8 lg:col-start-5 space-y-12">
             <div>
               <h4
@@ -597,14 +583,13 @@
               >
                 Main Stack
               </h4>
-              <div class="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
+              <div class="grid grid-cols-2 md:grid-cols-3 gap-6">
                 <div class="tech-card">
                   <img
                     src="https://cdn.simpleicons.org/typescript/eecbcb"
                     class="tech-icon-img"
                     alt="TS"
-                  />
-                  <span
+                  /><span
                     class="font-body text-sm tracking-widest uppercase opacity-80"
                     >TypeScript</span
                   >
@@ -614,8 +599,7 @@
                     src="https://cdn.simpleicons.org/react/eecbcb"
                     class="tech-icon-img"
                     alt="React"
-                  />
-                  <span
+                  /><span
                     class="font-body text-sm tracking-widest uppercase opacity-80"
                     >React</span
                   >
@@ -625,8 +609,7 @@
                     src="https://cdn.simpleicons.org/nextdotjs/eecbcb"
                     class="tech-icon-img"
                     alt="Next"
-                  />
-                  <span
+                  /><span
                     class="font-body text-sm tracking-widest uppercase opacity-80"
                     >Next.js</span
                   >
@@ -636,8 +619,7 @@
                     src="https://cdn.simpleicons.org/nodedotjs/eecbcb"
                     class="tech-icon-img"
                     alt="Node"
-                  />
-                  <span
+                  /><span
                     class="font-body text-sm tracking-widest uppercase opacity-80"
                     >Node.js</span
                   >
@@ -647,8 +629,7 @@
                     src="https://cdn.simpleicons.org/postgresql/eecbcb"
                     class="tech-icon-img"
                     alt="SQL"
-                  />
-                  <span
+                  /><span
                     class="font-body text-sm tracking-widest uppercase opacity-80"
                     >SQL</span
                   >
@@ -658,25 +639,23 @@
                     src="https://cdn.simpleicons.org/tailwindcss/eecbcb"
                     class="tech-icon-img"
                     alt="Tailwind"
-                  />
-                  <span
+                  /><span
                     class="font-body text-sm tracking-widest uppercase opacity-80"
                     >Tailwind</span
                   >
                 </div>
               </div>
             </div>
-
             <div>
               <h4
                 class="text-sm font-body uppercase tracking-[0.3em] opacity-40 mb-6"
               >
                 Experience
               </h4>
-              <div class="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
+              <div class="grid grid-cols-2 md:grid-cols-3 gap-6">
                 <div class="tech-card py-6">
                   <div
-                    class="w-10 h-10 bg-[#eecbcb] transition-all duration-300"
+                    class="w-10 h-10 bg-[#eecbcb]"
                     style="
                       -webkit-mask: url(&quot;https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg&quot;)
                         no-repeat center;
@@ -694,10 +673,9 @@
                 <div class="tech-card py-6">
                   <img
                     src="https://cdn.simpleicons.org/python/eecbcb"
-                    class="tech-icon-img w-8 h-8"
+                    class="tech-icon-img"
                     alt="Python"
-                  />
-                  <span
+                  /><span
                     class="font-body text-xs tracking-widest uppercase opacity-60"
                     >Python</span
                   >
@@ -705,10 +683,9 @@
                 <div class="tech-card py-6">
                   <img
                     src="https://cdn.simpleicons.org/cplusplus/eecbcb"
-                    class="tech-icon-img w-8 h-8"
+                    class="tech-icon-img"
                     alt="C++"
-                  />
-                  <span
+                  /><span
                     class="font-body text-xs tracking-widest uppercase opacity-60"
                     >C++</span
                   >
@@ -718,8 +695,7 @@
                     src="https://cdn.simpleicons.org/mongodb/eecbcb"
                     class="tech-icon-img"
                     alt="Mongo"
-                  />
-                  <span
+                  /><span
                     class="font-body text-sm tracking-widest uppercase opacity-60"
                     >MongoDB</span
                   >
@@ -735,66 +711,47 @@
         class="min-h-screen flex items-center justify-center px-6 md:px-20 py-20 relative"
       >
         <div
-          class="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-32 w-full max-w-7xl items-start"
+          class="grid grid-cols-1 lg:grid-cols-2 gap-16 w-full max-w-7xl items-start"
         >
           <div class="space-y-8 animate-float">
             <h2
-              class="text-[12vw] lg:text-[6.5rem] leading-[0.85] font-display font-light text-soft-clay tracking-tight opacity-90"
+              class="text-[12vw] lg:text-[6.5rem] font-display font-light text-soft-clay opacity-90 leading-none"
             >
-              Contact<br /><span class="italic font-normal opacity-50 ml-4"
-                >Me.</span
-              >
+              Contact<br /><span class="italic opacity-50 ml-4">Me.</span>
             </h2>
             <div class="glass-card-premium p-8 max-w-md">
-              <p
-                class="text-lg font-light leading-relaxed opacity-80 font-body"
-              >
-                Je suis toujours désireux d'explorer de nouvelles opportunités
-                et des projets passionnants. N'hésitez pas à m'envoyer un
-                message.
+              <p class="text-lg font-light opacity-80 font-body">
+                Je suis toujours désireux d'explorer de nouvelles opportunités.
+                N'hésitez pas à m'envoyer un message.
               </p>
             </div>
           </div>
-
           <div class="lg:pt-20 w-full">
             <form class="space-y-12">
               <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div class="relative">
-                  <input
-                    type="text"
-                    placeholder="Votre nom"
-                    class="contact-input group"
-                    required
-                  />
-                </div>
-                <div class="relative">
-                  <input
-                    type="email"
-                    placeholder="Votre e-mail"
-                    class="contact-input"
-                    required
-                  />
-                </div>
+                <input
+                  type="text"
+                  placeholder="Votre nom"
+                  class="contact-input"
+                  required
+                />
+                <input
+                  type="email"
+                  placeholder="Votre e-mail"
+                  class="contact-input"
+                  required
+                />
               </div>
-              <div class="relative">
-                <textarea
-                  placeholder="Votre Message"
-                  rows="4"
-                  class="contact-input resize-none"
-                  id="msg-input"
-                  maxlength="5000"
-                ></textarea>
-                <div
-                  class="absolute bottom-[-25px] right-0 text-xs font-body opacity-40"
-                  id="char-count"
-                >
-                  0/5000 characters
-                </div>
-              </div>
-
+              <textarea
+                placeholder="Votre Message"
+                rows="4"
+                class="contact-input resize-none"
+                id="msg-input"
+                maxlength="5000"
+              ></textarea>
               <button
                 type="submit"
-                class="group flex items-center gap-4 text-2xl font-display font-light italic text-white hover:opacity-80 transition-opacity mt-8"
+                class="group flex items-center gap-4 text-2xl font-display font-light italic text-white hover:opacity-80 transition-opacity"
               >
                 Envoyer le message
                 <div
@@ -807,7 +764,6 @@
                     fill="none"
                     stroke="currentColor"
                     stroke-width="1.5"
-                    class="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform"
                   >
                     <line x1="7" y1="17" x2="17" y2="7"></line>
                     <polyline points="7 7 17 7 17 17"></polyline>
@@ -821,20 +777,218 @@
     </main>
 
     <script>
+      gsap.registerPlugin(ScrollTrigger);
+
+      // --- DATA PROJETS AVEC LOGIQUE MULTIMÉDIA ---
+      // IMPORTANT : Utilise des objets {type, url} pour les médias
+      const projects = [
+        {
+          id: "jobtrack",
+          number: "01",
+          title: "JobTrack AI",
+          description:
+            "Une solution SaaS intelligente pour organiser vos applications. L'IA analyse vos candidatures et les range efficacement pour vous permettre de garder une mise à jour constante de vos opportunités.",
+          media: [
+            { type: "img", url: "public/media/jobtrackai/a.png" },
+            { type: "img", url: "public/media/jobtrackai/b.png" },
+            { type: "img", url: "public/media/jobtrackai/c.png" },
+          ],
+          liveLink: "https://jobtrackai-three.vercel.app/login-page",
+          codeLink: "https://github.com/JohannSR28/jobtrackai",
+        },
+        {
+          id: "tactorelia",
+          number: "02",
+          title: "Tactorelia",
+          description:
+            "Une plateforme de mentorat propulsée par l'IA fusionnant pédagogie et technologie. Tactorelia brise les barrières d'apprentissage traditionnelles grâce à des parcours personnalisés et interactifs.",
+          media: [
+            { type: "img", url: "public/media/tactorelia/a.png" },
+            { type: "img", url: "public/media/tactorelia/b.png" },
+          ],
+          // LIENS INACTIFS (javascript:void(0))
+          liveLink: "javascript:void(0)",
+          codeLink: "javascript:void(0)",
+        },
+        {
+          id: "cafesansfil",
+          number: "03",
+          title: "Café Sans Fil",
+          description:
+            "Une application de gestion complète pour un café étudiant. Conçue pour organiser les bénévoles et les stocks, elle a réduit la charge de travail administrative de 40% (Flutter/Node.js).",
+          media: [
+            // VIDEO AVEC CONTROLES
+            { type: "video", url: "public/media/cafeSansFil/cafeSansFil.mp4" },
+            { type: "img", url: "public/media/cafeSansFil/cafeSansFil.png" },
+          ],
+          // LIENS INACTIFS (javascript:void(0))
+          liveLink: "javascript:void(0)",
+          codeLink: "javascript:void(0)",
+        },
+      ];
+
+      // GÉNÉRATION DYNAMIQUE
+      const track = document.getElementById("projects-track");
+      projects.forEach((proj, index) => {
+        let mediaHTML = "";
+        proj.media.forEach((item, i) => {
+          const active = i === 0 ? "active" : "";
+          if (item.type === "video") {
+            // controls = l'utilisateur gère (play, pause, seek)
+            mediaHTML += `<video src="${item.url}" controls playsinline class="slide-img ${active}"></video>`;
+          } else {
+            mediaHTML += `<img src="${item.url}" class="slide-img ${active}">`;
+          }
+        });
+
+        // Gestion de l'attribut target="_blank"
+        const isLiveVoid = proj.liveLink === "javascript:void(0)";
+        const isCodeVoid = proj.codeLink === "javascript:void(0)";
+
+        const liveTarget = isLiveVoid ? "" : 'target="_blank"';
+        const codeTarget = isCodeVoid ? "" : 'target="_blank"';
+
+        // Classes pour griser les liens vides (Optionnel, mais bonne UX)
+        const liveClass = isLiveVoid
+          ? "link-about-style group link-disabled"
+          : "link-about-style group";
+        const codeClass = isCodeVoid
+          ? "link-about-style group link-disabled"
+          : "link-about-style group";
+
+        track.innerHTML += `
+            <div class="project-section" id="section-${index}">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 w-full max-w-[90vw] items-center">
+                    <div class="flex flex-col items-center justify-center order-2 lg:order-1">
+                        <div class="viewer-wrapper">
+                            <div class="viewer-container" id="viewer-${index}">${mediaHTML}</div>
+                            <div class="control-deck anim-element">
+                                <button class="deck-btn" onclick="changeSlide(${index}, -1)"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 19l-7-7 7-7" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+                                <div class="deck-separator"></div>
+                                <button class="deck-btn" onclick="changeSlide(${index}, 1)"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex flex-col justify-center space-y-6 order-1 lg:order-2 lg:pl-4">
+                        <div class="anim-element">
+                            <span class="font-body text-sm tracking-[0.3em] uppercase opacity-40">${proj.number} / Project</span>
+                            <h3 class="text-6xl md:text-8xl font-display font-light text-soft-clay tracking-tight mt-3 opacity-90">${proj.title}</h3>
+                        </div>
+                        <p class="anim-element text-lg md:text-xl font-light leading-relaxed opacity-70 max-w-md font-body text-justify">${proj.description}</p>
+                        <div class="anim-element pt-6 flex flex-wrap items-center gap-10">
+                            <a href="${proj.liveLink}" ${liveTarget} class="${liveClass}">Check Live <span class="group-hover:translate-x-1 transition-transform">→</span></a>
+                            <a href="${proj.codeLink}" ${codeTarget} class="${codeClass}"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" class="opacity-80"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.042-1.416-4.042-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg> Github Code</a>
+                        </div>
+                    </div>
+                </div>
+            </div>`;
+      });
+
+      // SCROLL LOGIC
+      let scrollTween = gsap.to(track, {
+        x: () => -(track.scrollWidth - window.innerWidth),
+        ease: "none",
+        scrollTrigger: {
+          trigger: "#work-section",
+          pin: true,
+          scrub: 0.1,
+          end: () => "+=" + (track.scrollWidth - window.innerWidth),
+          invalidateOnRefresh: true,
+        },
+      });
+
+      // ANIMATIONS ENTRÉE
+      gsap.utils.toArray(".project-section").forEach((section) => {
+        const elements = section.querySelectorAll(".anim-element");
+        const image = section.querySelector(".viewer-container");
+        ScrollTrigger.create({
+          trigger: section,
+          containerAnimation: scrollTween,
+          start: "left center",
+          end: "right center",
+          onEnter: () => {
+            gsap.to(elements, {
+              y: 0,
+              opacity: 1,
+              duration: 0.6,
+              stagger: 0.1,
+              overwrite: true,
+            });
+            gsap.fromTo(
+              image,
+              { clipPath: "inset(0 100% 0 0)" },
+              {
+                clipPath: "inset(0 0% 0 0)",
+                duration: 0.8,
+                ease: "power2.out",
+                overwrite: true,
+              },
+            );
+          },
+          onEnterBack: () =>
+            gsap.to(elements, {
+              y: 0,
+              opacity: 1,
+              duration: 0.6,
+              stagger: 0.1,
+              overwrite: true,
+            }),
+        });
+      });
+
+      // SLIDER LOGIC + VIDEO HANDLING
+      const slidersState = projects.map(() => 0);
+
+      function changeSlide(projectIndex, direction) {
+        const container = document.getElementById(`viewer-${projectIndex}`);
+        const mediaItems = container.querySelectorAll(".slide-img");
+        const total = mediaItems.length;
+
+        // 1. Désactiver slide actuel
+        const currentMedia = mediaItems[slidersState[projectIndex]];
+        currentMedia.classList.remove("active");
+
+        // Si c'était une vidéo, on la met en pause quand on change
+        if (currentMedia.tagName === "VIDEO") currentMedia.pause();
+
+        // 2. Calcul nouvel index
+        let newIndex = (slidersState[projectIndex] + direction + total) % total;
+        slidersState[projectIndex] = newIndex;
+
+        // 3. Activer nouveau slide
+        const newMedia = mediaItems[newIndex];
+        newMedia.classList.add("active");
+      }
+
+      // AUTO-SLIDE INTELLIGENT
+      setInterval(() => {
+        projects.forEach((proj, i) => {
+          const container = document.getElementById(`viewer-${i}`);
+          if (!container) return;
+
+          const mediaItems = container.querySelectorAll(".slide-img");
+          const currentMedia = mediaItems[slidersState[i]];
+
+          // SI C'EST UNE VIDÉO, ON NE SCROLLE PAS AUTOMATIQUEMENT
+          if (currentMedia.tagName === "VIDEO") {
+            // On laisse l'utilisateur tranquille
+            return;
+          }
+
+          // Sinon (Image), on scrolle
+          changeSlide(i, 1);
+        });
+      }, 5000);
+
+      // Scroll Progress Indicator
       const progressText = document.getElementById("scroll-progress");
-      function handleScroll() {
+      window.addEventListener("scroll", () => {
         const winH = window.innerHeight;
         const docH = document.documentElement.scrollHeight;
-        const scrollTop = window.scrollY;
-        const maxScroll = docH - winH;
-        const scrollRatio = maxScroll > 0 ? scrollTop / maxScroll : 0;
         if (progressText)
-          progressText.innerText = Math.round(scrollRatio * 100) + "%";
-      }
-      window.addEventListener("scroll", () =>
-        requestAnimationFrame(handleScroll),
-      );
-      handleScroll();
+          progressText.innerText =
+            Math.round((window.scrollY / (docH - winH)) * 100) + "%";
+      });
 
       const msgInput = document.getElementById("msg-input");
       const charCount = document.getElementById("char-count");
@@ -843,179 +997,6 @@
           charCount.innerText = `${msgInput.value.length}/5000 characters`;
         });
       }
-
-      gsap.registerPlugin(ScrollTrigger);
-
-      const projects = [
-        {
-          id: "jobtrack",
-          number: "01",
-          title: "JobTrack AI",
-          description:
-            "Une solution SaaS pour organiser vos candidatures. L'IA analyse et classe vos opportunités pour un suivi efficace et centralisé.",
-          images: [
-            "https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=2070",
-            "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?q=80&w=2070",
-            "https://images.unsplash.com/photo-1551650975-87deedd944c3?q=80&w=1974",
-          ],
-          liveLink: "#",
-          codeLink: "#",
-        },
-        {
-          id: "tactorelia",
-          number: "02",
-          title: "Tactorelia",
-          description:
-            "Une plateforme de mentorat propulsée par l'IA fusionnant pédagogie et technologie pour briser les barrières de la connectivité.",
-          images: [
-            "https://images.unsplash.com/photo-1587620962725-abab7fe55159?q=80&w=2070",
-            "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=2070",
-          ],
-          liveLink: "#",
-          codeLink: "#",
-        },
-        {
-          id: "mortgage",
-          number: "03",
-          title: "Mortgage",
-          description:
-            "Simulateur financier de précision. Au-delà du calcul, l'outil offre une visualisation interactive des données pour modéliser des scénarios d'investissement complexes et générer des rapports stratégiques.",
-          images: [
-            "https://images.unsplash.com/photo-1551288049-bbbda536339a?q=80&w=2070",
-            "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2015",
-          ],
-          liveLink: "#",
-          codeLink: "#",
-        },
-      ];
-
-      const track = document.getElementById("projects-track");
-      if (track) {
-        projects.forEach((proj, index) => {
-          let imagesHTML = "";
-          proj.images.forEach((url, i) => {
-            const activeClass = i === 0 ? "active" : "";
-            imagesHTML += `<img src="${url}" class="slide-img ${activeClass}" data-index="${i}">`;
-          });
-
-          const sectionHTML = `
-                <div class="project-section" id="section-${index}">
-                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 w-full max-w-[90vw] items-center">
-                        <div class="flex flex-col items-center justify-center order-2 lg:order-1">
-                            <div class="viewer-wrapper">
-                                <div class="viewer-container" id="viewer-${index}">
-                                    <div class="parallax-wrapper absolute inset-0 w-full h-full">
-                                        ${imagesHTML}
-                                    </div>
-                                </div>
-                                <div class="control-deck anim-element">
-                                    <button class="deck-btn" onclick="changeSlide(${index}, -1)">
-                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 19l-7-7 7-7" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                                    </button>
-                                    <div class="deck-separator"></div>
-                                    <button class="deck-btn" onclick="changeSlide(${index}, 1)">
-                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="flex flex-col justify-center space-y-6 order-1 lg:order-2 lg:pl-4">
-                            <div class="anim-element">
-                                <span class="font-body text-sm tracking-[0.3em] uppercase opacity-40">${proj.number} / Project</span>
-                                <h3 class="text-6xl md:text-8xl leading-[0.9] font-display font-light text-soft-clay tracking-tight mt-3 opacity-90">
-                                    ${proj.title}
-                                </h3>
-                            </div>
-                            <p class="anim-element text-lg md:text-xl font-light leading-relaxed opacity-70 max-w-md font-body text-justify">
-                                ${proj.description}
-                            </p>
-                            <div class="anim-element pt-6 flex flex-wrap items-center gap-10">
-                                <a href="${proj.liveLink}" class="link-about-style group">
-                                    Check Live <span class="group-hover:translate-x-1 transition-transform">→</span>
-                                </a>
-                                <a href="${proj.codeLink}" class="link-about-style group">
-                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" class="opacity-80"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.042-1.416-4.042-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
-                                    Github Code
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            `;
-          track.innerHTML += sectionHTML;
-        });
-
-        // GSAP FREE SCROLL + Mobile Fix
-        let scrollTween = gsap.to(track, {
-          x: () => -(track.scrollWidth - window.innerWidth),
-          ease: "none",
-          scrollTrigger: {
-            trigger: "#work-section",
-            pin: true,
-            scrub: 0.1,
-            end: () => "+=" + (track.scrollWidth - window.innerWidth),
-            invalidateOnRefresh: true,
-          },
-        });
-
-        // ANIMATIONS
-        const sections = gsap.utils.toArray(".project-section");
-        sections.forEach((section) => {
-          const elements = section.querySelectorAll(".anim-element");
-          const image = section.querySelector(".viewer-container");
-
-          ScrollTrigger.create({
-            trigger: section,
-            containerAnimation: scrollTween,
-            start: "left center",
-            end: "right center",
-            onEnter: () => {
-              gsap.to(elements, {
-                y: 0,
-                opacity: 1,
-                duration: 0.6,
-                stagger: 0.1,
-                overwrite: true,
-              });
-              gsap.fromTo(
-                image,
-                { clipPath: "inset(0 100% 0 0)" },
-                {
-                  clipPath: "inset(0 0% 0 0)",
-                  duration: 0.8,
-                  ease: "power2.out",
-                  overwrite: true,
-                },
-              );
-            },
-            onEnterBack: () => {
-              gsap.to(elements, {
-                y: 0,
-                opacity: 1,
-                duration: 0.6,
-                stagger: 0.1,
-                overwrite: true,
-              });
-            },
-          });
-        });
-      }
-
-      const slidersState = projects.map(() => 0);
-      function changeSlide(projectIndex, direction) {
-        const container = document.getElementById(`viewer-${projectIndex}`);
-        const images = container.querySelectorAll(".slide-img");
-        const total = images.length;
-        images[slidersState[projectIndex]].classList.remove("active");
-        let newIndex = slidersState[projectIndex] + direction;
-        if (newIndex >= total) newIndex = 0;
-        if (newIndex < 0) newIndex = total - 1;
-        slidersState[projectIndex] = newIndex;
-        images[newIndex].classList.add("active");
-      }
-      setInterval(() => {
-        projects.forEach((_, i) => changeSlide(i, 1));
-      }, 5000);
     </script>
   </body>
 </html>
