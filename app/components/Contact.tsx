@@ -1,12 +1,44 @@
 "use client";
 
 import React, { useState } from "react";
-// Import du hook de traduction
 import { useLanguage } from "../context/languageContext";
 
 export default function Contact() {
+  const { t } = useLanguage();
+
+  // États pour les champs et le statut
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
-  const { t } = useLanguage(); // Récupération des textes
+  const [status, setStatus] = useState<
+    "idle" | "loading" | "success" | "error"
+  >("idle");
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setStatus("loading");
+
+    try {
+      const res = await fetch("/api/send", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name, email, message }),
+      });
+
+      if (res.ok) {
+        setStatus("success");
+        setName("");
+        setEmail("");
+        setMessage("");
+      } else {
+        setStatus("error");
+      }
+    } catch {
+      // CORRECTION : On retire '(err)' car on ne l'utilise pas.
+      // Le bloc catch {} seul fonctionne parfaitement en TS moderne.
+      setStatus("error");
+    }
+  };
 
   return (
     <section
@@ -14,7 +46,6 @@ export default function Contact() {
       className="min-h-screen flex items-center justify-center px-6 md:px-20 py-20 relative"
     >
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 w-full max-w-7xl items-start">
-        {/* COLONNE GAUCHE - Sticky Title */}
         <div className="space-y-8 lg:sticky lg:top-32">
           <h2 className="text-[12vw] lg:text-[6.5rem] font-display font-light text-soft-clay opacity-90 leading-none">
             {t.contact.title}
@@ -28,19 +59,22 @@ export default function Contact() {
           </div>
         </div>
 
-        {/* COLONNE DROITE - FORMULAIRE */}
         <div className="lg:pt-20 w-full">
-          <form className="space-y-12" onSubmit={(e) => e.preventDefault()}>
+          <form className="space-y-12" onSubmit={handleSubmit}>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               <input
                 type="text"
-                placeholder={t.contact.form.name} // Placeholder traduit
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                placeholder={t.contact.form.name}
                 className="contact-input"
                 required
               />
               <input
                 type="email"
-                placeholder={t.contact.form.email} // Placeholder traduit
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder={t.contact.form.email}
                 className="contact-input"
                 required
               />
@@ -48,12 +82,13 @@ export default function Contact() {
 
             <div className="relative">
               <textarea
-                placeholder={t.contact.form.message} // Placeholder traduit
+                value={message}
+                onChange={(e) => setMessage(e.target.value)}
+                placeholder={t.contact.form.message}
                 rows={4}
                 className="contact-input resize-none"
                 maxLength={5000}
-                value={message}
-                onChange={(e) => setMessage(e.target.value)}
+                required
               ></textarea>
               <div className="text-right text-xs text-soft-clay/40 mt-2 font-mono">
                 {message.length}/5000 {t.contact.form.chars}
@@ -62,9 +97,10 @@ export default function Contact() {
 
             <button
               type="submit"
-              className="group flex items-center gap-4 text-2xl font-display font-light italic text-white hover:opacity-80 transition-opacity"
+              disabled={status === "loading"}
+              className="group flex items-center gap-4 text-2xl font-display font-light italic text-white hover:opacity-80 transition-opacity disabled:opacity-30"
             >
-              {t.contact.form.btn} {/* Texte bouton traduit */}
+              {status === "loading" ? "..." : t.contact.form.btn}
               <div className="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center group-hover:bg-white/10 transition-all">
                 <svg
                   width="20"
@@ -79,6 +115,18 @@ export default function Contact() {
                 </svg>
               </div>
             </button>
+
+            {/* Messages de feedback */}
+            {status === "success" && (
+              <p className="text-emerald-400 font-body">
+                Message envoyé avec succès ! ✨
+              </p>
+            )}
+            {status === "error" && (
+              <p className="text-rose-500 font-body">
+                Une erreur est survenue. Réessayez plus tard.
+              </p>
+            )}
           </form>
         </div>
       </div>
