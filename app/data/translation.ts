@@ -75,7 +75,7 @@ export const translations = {
       description:
         "Je suis toujours désireux d'explorer de nouvelles opportunités. N'hésitez pas à m'envoyer un message.",
       form: {
-        name: "Votre nom",
+        name: "Votre nom complet",
         email: "Votre e-mail",
         message: "Votre Message",
         btn: "Envoyer le message",
@@ -163,7 +163,7 @@ export const translations = {
       description:
         "I am always eager to explore new opportunities. Feel free to send me a message.",
       form: {
-        name: "Your name",
+        name: "Your full name",
         email: "Your email",
         message: "Your Message",
         btn: "Send message",
