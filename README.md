@@ -27,23 +27,3 @@ Ce portfolio met en lumière plusieurs de mes réalisations, notamment :
 * **Tactorelia :** Une plateforme de mentorat propulsée par l'IA fusionnant pédagogie et technologie avec des parcours personnalisés.
 * **Café Sans Fil :** Une application de gestion complète (Flutter/Node.js) pour un café étudiant, ayant réduit la charge de travail administrative de 40%.
 
----
-
-## 🚀 Installation et Lancement en Local
-
-Pour explorer le code et lancer ce portfolio sur votre machine locale :
-
-```bash
-# 1. Cloner le dépôt
-git clone [https://github.com/JohannSR28/](https://github.com/JohannSR28/)[NOM_DU_REPO].git
-
-# 2. Accéder au répertoire du projet
-cd [NOM_DU_REPO]
-
-# 3. Installer les dépendances
-npm install
-# ou yarn install / pnpm install
-
-# 4. Lancer le serveur de développement
-npm run dev
-# ou yarn dev / pnpm dev
