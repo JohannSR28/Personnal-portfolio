@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Link from "next/link";
 import Header from "./components/Header";
 import ScrollProgress from "./components/ScrollProgress";
 import Hero from "./components/Hero";
@@ -59,6 +60,35 @@ export default function Home() {
       <Work />
       <Stack />
       <Contact />
+
+      {/* Archives de design — volontairement quasi invisible, en bas à gauche */}
+      <div className="fixed bottom-3 left-3 z-50 group">
+        <div className="flex flex-col-reverse items-start gap-2">
+          <span className="w-5 h-5 flex items-center justify-center text-[11px] font-mono opacity-15 group-hover:opacity-70 transition-opacity duration-500 select-none">
+            ✦
+          </span>
+          <div className="flex flex-col gap-1.5 px-3 py-2 rounded-md bg-black/70 backdrop-blur-sm opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto transition-opacity duration-500 text-[10px] font-mono tracking-widest uppercase">
+            <Link
+              href="/v/editorial"
+              className="opacity-60 hover:opacity-100 hover:text-white transition-opacity"
+            >
+              Édition I — Journal
+            </Link>
+            <Link
+              href="/v/brutal"
+              className="opacity-60 hover:opacity-100 hover:text-white transition-opacity"
+            >
+              Édition II — Brut
+            </Link>
+            <Link
+              href="/v/galerie"
+              className="opacity-60 hover:opacity-100 hover:text-white transition-opacity"
+            >
+              Édition III — Galerie
+            </Link>
+          </div>
+        </div>
+      </div>
     </main>
   );
 }

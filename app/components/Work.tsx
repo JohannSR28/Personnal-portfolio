@@ -23,7 +23,10 @@ interface StaticProject {
 
 // Type final complet (après fusion avec la traduction)
 interface Project extends StaticProject {
+  subtitle: string;
   description: string;
+  proof: string[];
+  corollary: string;
   textLive: string;
   textCode: string;
 }
@@ -67,7 +70,13 @@ const staticProjectsData: StaticProject[] = [
 ];
 
 // --- SOUS-COMPOSANT PROJET ---
-const ProjectItem = ({ project }: { project: Project }) => {
+const ProjectItem = ({
+  project,
+  proofLabel,
+}: {
+  project: Project;
+  proofLabel: string;
+}) => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const mediaCount = project.media.length;
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -179,19 +188,45 @@ const ProjectItem = ({ project }: { project: Project }) => {
         </div>
 
         {/* TEXTE */}
-        <div className="flex flex-col justify-center space-y-6 order-1 lg:order-2 lg:pl-4">
+        <div className="flex flex-col justify-center space-y-5 order-1 lg:order-2 lg:pl-4">
           <div className="anim-element">
             <span className="font-body text-sm tracking-[0.3em] uppercase opacity-40">
-              {project.number} / Project
+              {project.number} — {project.subtitle}
             </span>
-            <h3 className="text-6xl md:text-8xl font-display font-light text-soft-clay tracking-tight mt-3 opacity-90">
+            <h3 className="text-5xl md:text-7xl font-display font-light text-soft-clay tracking-tight mt-3 opacity-90">
               {project.title}
             </h3>
           </div>
-          <p className="anim-element text-lg md:text-xl font-light leading-relaxed opacity-70 max-w-md font-body text-justify">
+          <p className="anim-element text-base md:text-lg font-light leading-relaxed opacity-70 max-w-md font-body text-justify">
             {project.description}
           </p>
-          <div className="anim-element pt-6 flex flex-wrap items-center gap-10">
+
+          {/* LES VRAIES LEÇONS DU PROJET (desktop) */}
+          <div className="anim-element hidden lg:block max-w-md">
+            <span className="font-body text-xs tracking-[0.3em] uppercase opacity-40">
+              {proofLabel}
+            </span>
+            <ol className="mt-3 space-y-2.5">
+              {project.proof.map((step, i) => (
+                <li
+                  key={i}
+                  className="flex gap-3 font-body text-sm font-light leading-relaxed opacity-60"
+                >
+                  <span className="font-mono text-[10px] pt-1 opacity-80 flex-shrink-0">
+                    ({i + 1})
+                  </span>
+                  {step}
+                </li>
+              ))}
+            </ol>
+          </div>
+
+          {/* LA LEÇON EN UNE PHRASE */}
+          <p className="anim-element font-display font-light italic text-lg md:text-xl text-white/90 max-w-md leading-snug">
+            « {project.corollary} »
+          </p>
+
+          <div className="anim-element pt-4 flex flex-wrap items-center gap-10">
             <a
               href={project.liveLink}
               target={isLiveDisabled ? undefined : "_blank"}
@@ -234,7 +269,10 @@ export default function Work() {
   // Fusion TYPÉE (plus de 'any')
   const projects: Project[] = staticProjectsData.map((proj, i) => ({
     ...proj,
+    subtitle: t.work.items[i].subtitle,
     description: t.work.items[i].description,
+    proof: t.work.items[i].proof,
+    corollary: t.work.items[i].corollary,
     textLive: t.work.items[i].live,
     textCode: t.work.items[i].code,
   }));
@@ -318,7 +356,11 @@ export default function Work() {
         className="flex items-center h-full z-10 relative pl-[10vw] lg:pl-[5vw] pr-[10vw] lg:pr-[5vw] w-max"
       >
         {projects.map((proj) => (
-          <ProjectItem key={proj.id} project={proj} />
+          <ProjectItem
+            key={proj.id}
+            project={proj}
+            proofLabel={t.work.labels.proof}
+          />
         ))}
       </div>
     </section>
