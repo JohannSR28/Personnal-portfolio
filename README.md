@@ -25,5 +25,4 @@ Ce portfolio met en lumière plusieurs de mes réalisations, notamment :
 
 * **[JobTrack AI](https://github.com/JohannSR28/jobtrackai) :** Une solution SaaS intelligente. L'IA analyse les candidatures et les range efficacement pour garder une mise à jour constante des opportunités.
 * **Tactorelia :** Une plateforme de mentorat propulsée par l'IA fusionnant pédagogie et technologie avec des parcours personnalisés.
-* **Café Sans Fil :** Une application de gestion complète (Flutter/Node.js) pour un café étudiant, ayant réduit la charge de travail administrative de 40%.
-
+* **Café Sans Fil :** Une application de gestion complète (Flutter/Node.js) pour un café étudiant.

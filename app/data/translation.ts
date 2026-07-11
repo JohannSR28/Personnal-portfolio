@@ -74,8 +74,7 @@ export const translations = {
         {
           id: "cafesansfil",
           subtitle: "Les fondations",
-          description:
-            "Une application de gestion complète pour un café étudiant. Conçue pour organiser les bénévoles et les stocks, elle a réduit la charge de travail administrative de 40% (Flutter/Node.js).",
+          description: "Ma première application en conditions réelles : un système de gestion complet pour les cafés étudiants du campus de l'UdeM. Application mobile Flutter et API REST Node.js pour organiser les bénévoles et suivre les stocks.",
           proof: [
             "Ma première vraie application — c'est ici que j'ai tout appris : les endpoints, les API, la communication entre le front et le back.",
             "Et la leçon la plus durable : savoir ce qu'il faut coder soi-même, et ce qui existe déjà.",
@@ -187,8 +186,7 @@ export const translations = {
         {
           id: "cafesansfil",
           subtitle: "Foundations",
-          description:
-            "A complete management application for a student café. Designed to organize volunteers and inventory, it reduced administrative workload by 40% (Flutter/Node.js).",
+          description: "My first real-world application: a complete management system for the student cafés on the UdeM campus. A Flutter mobile app and a Node.js REST API to organize volunteers and track inventory.",          
           proof: [
             "My first real application — this is where I learned everything: endpoints, APIs, how the front end talks to the back end.",
             "And the most lasting lesson: knowing what to build yourself, and what already exists.",
